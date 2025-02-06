@@ -1,0 +1,14 @@
+<?php
+$database = new SQLite3('merchants.db');
+
+$data = json_decode(file_get_contents("php://input"), true);
+$email = $data['email'];
+$password = password_hash($data['password'], PASSWORD_BCRYPT);
+
+$query = $database->prepare("INSERT INTO merchants (email, password) VALUES (:email, :password)");
+$query->bindValue(':email', $email);
+$query->bindValue(':password', $password);
+$query->execute();
+
+echo json_encode(["message" => "Merchant Registered!"]);
+?>
