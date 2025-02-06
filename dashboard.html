@@ -1,0 +1,8 @@
+<h2>Merchant Dashboard</h2>
+<p>Your API Key: <span id="apiKey"></span></p>
+
+<script>
+    fetch("https://yourapi.com/getApiKey.php")
+        .then(res => res.json())
+        .then(data => document.getElementById("apiKey").innerText = data.apiKey);
+</script>
